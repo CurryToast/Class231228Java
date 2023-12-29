@@ -24,6 +24,7 @@ public class A07CharacterTest {
 		System.out.println("c3 : " + c3); // 출력결과 - 가
 		System.out.println("c4 : " + c4); // 출력결과 - 가
 		System.out.println("c5 : " + c5); // 출력결과 - 가
+		System.out.println("'가' 문자의 유니코드값 (10진수) :" + (int)c3);
 
 		System.out.println("=====c3,c4,c5 변수의 문자가 아닌 코드값을 출력해보기======");
 		System.out.println(String.format("16진수 int c5 : %X", (int)c5));
