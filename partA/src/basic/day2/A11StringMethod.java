@@ -10,7 +10,9 @@ public class A11StringMethod {
         System.out.println("message.toUpperCase() : " + message.toUpperCase());
         System.out.println("message.toLowerCase() : " + message.toLowerCase());
         System.out.println("message.isEmpty() : " + message.isEmpty());
-        // 2. 인자 1개 => concat, equlas, charAt, startsWith, endsWith, ...
+        // 2. 인자 1개 => indexOf, concat, equlas, charAt, startsWith, endsWith, ...
+        System.out.println("message.indexOf(\"World\") : " + message.indexOf("World"));
+        System.out.println("message.indexOf(\"world\") : " + message.indexOf("world"));
         System.out.println("message.concat(\" Good Bye\") : " + message.concat(" Good Bye"));
         System.out.println("message.equals(message) : " + message.equals(message));
         System.out.println("message.charAt(0) : " + message.charAt(0)); // 문자열은 0부터 순서대로 문자에게 번호를 매깁니다.
@@ -25,8 +27,8 @@ public class A11StringMethod {
         System.out.println("message.replace(\"ll\", \"***\") : " + message.replace("ll", "***"));
 
         // 리턴 값 기준으로 정리
-        // boolean => isEmpty, equals, startsWith, endsWith
-        // int => length
+        // boolean => isEmpty, equals, startsWith, endsWith, isBlank
+        // int => length, indexOf
         // char => charAt
         // string => toUpperCase, toLowerCase, trim, concat, substring, replace
     }
