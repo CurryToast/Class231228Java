@@ -29,3 +29,11 @@ public class ProbChangeMoney {
         System.out.println("엔화를 원화로 바꿀 때_: " + toWon + "원\n");
     }
 }
+
+/*
+ * 복습: 기본 자료형을 크기 순서대로 나열해 봅시다.
+ * byte < char < short < int < long < float < double
+ *  1      2      2       4      8      4       8 
+ * 
+ * char 문자형은 코드값 구하기 위해 정수로 캐스팅할 때에는 0~65535를 충분히 저장할 수 있는 int형으로 자동 캐스팅합니다.
+*/
