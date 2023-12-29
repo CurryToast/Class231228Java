@@ -7,23 +7,23 @@ public class A07CharacterTest {
 		char c1 = 'A';
 		char c2 = 65;
 		
-		System.out.println("c1 : " + c1); // 출력결과 - A
-		System.out.println("c2 : " + c2); // 출력결과 - A
+		System.out.println("c1 : " + c1);
+		System.out.println("c2 : " + c2);
 		System.out.println("======문자의 코드값을 알고 싶으면 정수로 자동 캐스팅====");
 		
 		int code1 = c1; // c1은 'A' 를 int 로 자동 캐스팅하면 65
-		System.out.println("int로 캐스팅한 c1 : " + code1);	// 66
-		code1 += 1;  // code1 = code1 + 1 를 줄인 수식. 66
+		System.out.println("int로 캐스팅한 c1 : " + code1);
+		code1 += 1;
 		System.out.println("======덧셈연산한 코드값의 문자를 알고 싶으면 문자로 강제 캐스팅====");
 		System.out.println("문자 : " + (char)code1); // int를 char로 강제 캐스팅. 'B'
 
 		char c3 = '가';
-		char c4 = '\uac00'; // \\u 는 유니코드를 나타내는 이스케이프 문자 (16진수로 표시)
+		char c4 = '\uac00'; // \\u 는 유니코드를 나타내는 이스케이프 문자 (16진수로 표시). '가'
 		char c5 = 44032; // ac00 16진수에 대한 10진수 정수값
 		char c6 = '힣'; // 한글 마지막 문자
-		System.out.println("c3 : " + c3); // 출력결과 - 가
-		System.out.println("c4 : " + c4); // 출력결과 - 가
-		System.out.println("c5 : " + c5); // 출력결과 - 가
+		System.out.println("c3 : " + c3);
+		System.out.println("c4 : " + c4);
+		System.out.println("c5 : " + c5);
 		System.out.println("'가' 문자의 유니코드값 (10진수) :" + (int)c3);
 
 		System.out.println("=====c3,c4,c5 변수의 문자가 아닌 코드값을 출력해보기======");
@@ -34,16 +34,16 @@ public class A07CharacterTest {
 		System.out.println("한글 마지막 문자 코드값 code6 : " + code6);
 		System.out.println("한글 유니코드 문자는 총 " + (code6 - 44032 + 1) + "개 입니다.");
 		
-		int code3 = c3; // c3은 '가' 를 int 로 자동 캐스팅하면 44032
-		System.out.println("code3 : " + code3); //44033
+		int code3 = c3;
+		System.out.println("code3 : " + code3);
 		System.out.println("문자로 캐스팅한 code3 : " + (char)code3); //int를 char로 강제 캐스팅. '각'
 		
-		code3++; // code3 += 1 을 줄인 수식. 1씩 더하는 코딩이 많아서 편의성을 위한 방법
-		System.out.println("변경된 code3 : " + code3); // 44034
+		code3++;
+		System.out.println("변경된 code3 : " + code3);
 		System.out.println("변경된 code3 문자 : " + (char)code3); // int를 char로 강제 캐스팅. '각'
 		
-		c3++; // 44034
-		System.out.println("변경된 c3 : " + c3); // 44034
+		c3++;
+		System.out.println("변경된 c3 : " + c3);
 		System.out.println("변경된 c3 문자 : " + (char)c3); // int를 char로 강제 캐스팅. '갂'
 		
 		// 문자형으로는 덧셈이 오류. 1 리터럴은 int 정수이므로 char 변수 c1 값과 바로 덧셈 못함.

@@ -9,16 +9,13 @@ package basic.day2;
 
 public class A09HangulCharTest {
     public static void main(String[] args) {
-        char start = '나';
-        int codeNa = start, codeNet = '냿';
+        char start = '나', end = '낟';
+        int codeNa = start, codeNet = end;
 
-        while (start <= codeNet) {
+        while (start <= end) {
             System.out.print(start++);
         }
 
-        System.out.println("\n\nstart = " + start);
-
-        System.out.println();
-        System.out.println((char)codeNa + "~" + (char)codeNet + "까지의 문자의 개수: " + (codeNet - codeNa + 1));
+        System.out.println("\n" + (char)codeNa + "~" + (char)codeNet + "까지의 문자의 개수: " + (codeNet - codeNa + 1));
     }
 }
