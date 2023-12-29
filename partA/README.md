@@ -8,6 +8,15 @@
 
 데이터 타입 캐스팅
 
+Git
+- git 초기화  
+    ```
+    $ git init
+    ```
+- git 사용자 이메일 설정  
+    ```
+    $ git config --global user.email
+    ```
 ## 2023-12-29
 증감 연산자
 
@@ -19,3 +28,6 @@
 String 클래스
 - String 메소드 
     - 인자 유무, 인자 개수, 리턴값 자료형에 따라 정리
+
+Git
+- git 원격 저장소 설정
