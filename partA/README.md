@@ -32,3 +32,18 @@ String 클래스
 
 Git
 - git 원격 저장소 설정
+
+## 2024-01-02
+If-ElseIf-Else
+
+3항 연산자
+
+For문
+
+While문
+- 조건문과 변수를 사용해서 무한 반복하는 방법
+
+Switch문
+
+표준 입력
+- java.util.Scanner 클래스를 이용해 터미널에서 값을 입력받는 방법
