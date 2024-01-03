@@ -10,6 +10,7 @@ public class A25MySampleMethod {
         System.out.println(String.format("sumMToN(%d, %d) : %d", m, n, sumMToN(m, n)));
         System.out.println(String.format("multiplyMToN(%d, %d) : %d", m, n, multiplyMToN(m, n)));
         System.out.println(String.format("multiplyNof2(%d) : %d", n, multiplyNof2(n)));
+        System.out.println(String.format("multiplyNofM(%d, %d) : %d", m, n, multiplyNofM(m, n)));
         printGuGuDan(9, 9);
     }
 
@@ -67,8 +68,19 @@ public class A25MySampleMethod {
         return result;
     }
 
+    // m의 n승
+    public static long multiplyNofM(int m, int n) {
+        long result = 1L;
+        for(int i = 1; i <= n; i++) {
+            result *= m;
+        }
+
+        return result;
+    }
+
     // 구구단 출력 메소드
     public static void printGuGuDan(int d, int n) { // d: 단 수, n: 곱하는 수
+        System.out.println("구구단");
         for(int i = 1; i <= n; i++) { // 곱하는 수
             for(int j = 1; j <= d; j++) { // 단 수
                 System.out.print(String.format("%d x %d = %02d\t", j, i, i * j));
