@@ -3,8 +3,9 @@ package basic.day4;
 // 구글드라이브 과제 폴더에 업로드
 public class A25MySampleMethod {
     public static void main(String[] args) {
-        int m = 3, n = 8;
+        int m = 3, n = 8, score = checkScore(10);
 
+        System.out.println(String.format("점수: %d점.", score));
         System.out.println(String.format("sum1ToN(%d) : %d", n, sum1ToN(n)));
         System.out.println(String.format("multiply1ToN(%d) : %d", n, multiply1ToN(n)));
         System.out.println(String.format("sumMToN(%d, %d) : %d", m, n, sumMToN(m, n)));
@@ -12,6 +13,11 @@ public class A25MySampleMethod {
         System.out.println(String.format("multiplyNof2(%d) : %d", n, multiplyNof2(n)));
         System.out.println(String.format("multiplyNofM(%d, %d) : %d", m, n, multiplyNofM(m, n)));
         printGuGuDan(9, 9);
+    }
+
+    // 메소드가 private로 정의되면 다른 클래스에서 사용할 수 없습니다. => A26Test25.java에서 확인
+    private static int checkScore(int n) {
+        return n * 10;
     }
 
     // A22 1~5번을 각각 메소드로 정의해보기
