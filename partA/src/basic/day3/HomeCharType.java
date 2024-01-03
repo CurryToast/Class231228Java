@@ -28,7 +28,7 @@ public class HomeCharType {
                 upperCount++;
             } else if (item >= 97 && item <= 122) { // 소문자일때
                 lowerCount++;
-            } else {
+            } else { // 기호일때
                 symbolCount++;
             }
         }
