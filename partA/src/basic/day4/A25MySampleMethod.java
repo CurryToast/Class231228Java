@@ -10,7 +10,7 @@ public class A25MySampleMethod {
         System.out.println(String.format("sumMToN(%d, %d) : %d", m, n, sumMToN(m, n)));
         System.out.println(String.format("multiplyMToN(%d, %d) : %d", m, n, multiplyMToN(m, n)));
         System.out.println(String.format("multiplyNof2(%d) : %d", n, multiplyNof2(n)));
-        showGuGuDan();
+        printGuGuDan(9, 9);
     }
 
     // A22 1~5번을 각각 메소드로 정의해보기
@@ -29,7 +29,7 @@ public class A25MySampleMethod {
 
     // 1부터 n까지의 곱
     public static long multiply1ToN(int n) {
-        long result = 1;
+        long result = 1L;
         for(int i = 1; i <= n; i++) {
             result *= i;
         }
@@ -49,7 +49,7 @@ public class A25MySampleMethod {
 
     // m부터 n까지의 곱
     public static long multiplyMToN(int m, int n) {
-        long result = 1;
+        long result = 1L;
         for(int i = m; i <= n; i++) {
             result *= i;
         }
@@ -59,7 +59,7 @@ public class A25MySampleMethod {
 
     // 2의 n승
     public static long multiplyNof2(int n) {
-        long result = 1;
+        long result = 1L;
         for(int i = 1; i <= n; i++) {
             result *= 2;
         }
@@ -68,9 +68,9 @@ public class A25MySampleMethod {
     }
 
     // 구구단 출력 메소드
-    public static void showGuGuDan() {
-        for(int i = 1; i <= 9; i++) { // 곱하는 수
-            for(int j = 1; j <= 9; j++) { // 단 수
+    public static void printGuGuDan(int d, int n) { // d: 단 수, n: 곱하는 수
+        for(int i = 1; i <= n; i++) { // 곱하는 수
+            for(int j = 1; j <= d; j++) { // 단 수
                 System.out.print(String.format("%d x %d = %02d\t", j, i, i * j));
             }
             System.out.println();
