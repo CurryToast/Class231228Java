@@ -32,10 +32,7 @@ public class Score {
     }
 
     public void setJumsues(int[] points) {
-        jumsues = new int[points.length];
-        for(int i = 0; i < points.length; i++) {
-            jumsues[i] = points[i];
-        }
+        jumsues = Arrays.copyOf(points, points.length);
     }
 
 
