@@ -1,17 +1,49 @@
 package object.day6;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Omok {
     private OmokTile[] tiles;
+    private int size;
+
+    private int tileIndex(int row, int column) {
+        return row + column + (this.size - 1) * row;
+    }
 
     public Omok(int size) {
+        this.size = size;
         this.tiles = new OmokTile[size * size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int index = i + j + (size - 1) * i;
                 this.tiles[index].setIndex(i, j);
             }
+        }
+    }
+
+
+    public void setFieldSymbol(int row, int column, char symbol) {
+        OmokTile[tileIndex(row, column)].setSymbol(symbol);
+    }
+
+    public void printTable() {
+        for (int i = 0; i < this.tiles.length; i++) {
+            for (int j = 0; j < this.tiles.length; j++) {
+                int index = i + j + (this.tiles.length - 1) * i;
+                System.out.println(String.format("%c ", this.tiles[index].getSymbol()));
+            }
+        }
+    }
+
+    public void playOmok() {
+        Scanner sc = new Scanner(System.in);
+        String inputString;
+        boolean boo = true;
+        while (boo) {
+            printTable();
+            System.out.print("값 입력 >> ");
+            inputString = sc.nextLine();
         }
     }
 }
