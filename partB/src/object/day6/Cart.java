@@ -49,15 +49,13 @@ public class Cart {
 
 
     public void total_Money(int[] select) {
-        int total_Money = 0;
+        this.total_Money = 0;
         for(int item : select) {
             if (item < 0) {
                 break;
             }
 
-            total_Money += this.prices[item];
+            this.total_Money += this.prices[item];
         }
-
-        this.total_Money = total_Money;
     }
 }
