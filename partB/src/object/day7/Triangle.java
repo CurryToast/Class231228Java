@@ -36,6 +36,11 @@ public class Triangle extends Shape {
 		// return (this.getHeight()*this.getWidth())/2;
 	}
 
+	@Override
+    public void draw() {
+        System.out.println("삼각형 " + this.getShapeName() + " 를 그립니다.");
+    }
+
 /*
 	@Override
 	public void print() {  //오류: final메소드 오버라이드 안됩니다.

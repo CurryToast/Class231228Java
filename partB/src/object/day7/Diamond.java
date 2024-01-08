@@ -10,6 +10,11 @@ public class Diamond extends Shape {
     public void setRound(int round) {
         this.round = round;
     }
+
+    @Override
+    public void draw() {
+        System.out.println("다이아몬드 " + this.getShapeName() + " 를 그립니다.");
+    }
 }
 
 /*

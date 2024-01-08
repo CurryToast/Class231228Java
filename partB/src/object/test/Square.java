@@ -10,4 +10,9 @@ public class Square extends Shape {
     // public void setRound(int round) {
     //     this.round = round; // Shape과 같은 패키지가 아니어서 접근 불가능
     // }
+
+    @Override
+    public void draw() {
+        System.out.println("사각형 " + this.getShapeName() + " 를 그립니다.");
+    }
 }
