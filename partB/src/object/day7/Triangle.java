@@ -6,8 +6,8 @@ package object.day7;
 */
 
 public class Triangle extends Shape {
-	static final int MAX_WIDTH = 90;
-	private int angle;				//삼각형의 각도
+	public static final int MAX_WIDTH = 90;
+	private int angle;				// 삼각형의 각도
 	
 	public int getAngle() {
 		return angle;
@@ -17,7 +17,7 @@ public class Triangle extends Shape {
  *  자식 클래스는 반드시 부모 클래스의 생성자를 호출해야 합니다.
 */
 	public Triangle(String shapeName, int width, int height, int angle) {
-		//super 변수 : 부모 클래스 객체를 참조하는 변수
+		// super 변수 : 부모 클래스 객체를 참조하는 변수
 		super(shapeName, width, height);
 		this.angle = angle;
 	}
@@ -43,7 +43,7 @@ public class Triangle extends Shape {
 
 /*
 	@Override
-	public void print() {  //오류: final메소드 오버라이드 안됩니다.
+	public void print() {  // 오류: final메소드 오버라이드 안됩니다.
 		System.out.println("나는 트라이앵글 입니다.");
 	}
 */

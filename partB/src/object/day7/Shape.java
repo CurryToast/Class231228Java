@@ -11,8 +11,8 @@ package object.day7;
 	↓ Shape 클래스는 추상적인 상태. 모든 도형을 대표하는 클래스로 정의하였습니다.
  */
 
-public class Shape {    
-	static final int MAX_WIDTH = 100;    //상수
+public class Shape {
+	public static final int MAX_WIDTH = 100;    // 상수 - 최대 너비를 정함.
 
 	// 인스턴스 필드
 	private String shapeName;	// 도형 이름
@@ -47,7 +47,7 @@ public class Shape {
 		return height;
 	}
 
-	// setter 메소드 없음.('초기값을 바꿀수 없다'는 요구조건을 예시로 합니다. )
+	// setter 메소드 없음.('초기값을 바꿀수 없다'는 요구조건을 예시로 합니다.)
 	// 변경 : shapeName만 setter가 필요해서 추가합니다.
 	public void setShapeName(String shapeName) {
 		this.shapeName = shapeName;
