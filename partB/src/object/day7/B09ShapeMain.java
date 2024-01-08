@@ -2,7 +2,7 @@ package object.day7;
 
 // Shape과 Triangle을 객체 생성하고 메소드 테스트 해보세요.
 
-public class B07ShapeMain {
+public class B09ShapeMain {
     public static void main(String[] args) {
         Shape sh = new Shape("Shape", 100, 100);
         Triangle tr = new Triangle("Triangle", 80, 60, 90);
