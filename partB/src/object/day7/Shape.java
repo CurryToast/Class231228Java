@@ -18,6 +18,13 @@ public class Shape {
 		private String shapeName;		//도형 이름
 		private int width;				//도형의 크기 중 너비
 		private int height;				//도형의 크기 중 높이
+		protected String etc;
+		int round; // 접근 한정자가 없는 경우
+
+		public Shape() {
+			// 아래 커스텀 생성자가 있을 때는 기본 생성자 사용하고 싶으면 직접 정의하기
+			System.out.println("새로운 도형이 만들어졌습니다. 초기화가 필요합니다.");
+		}
 	
 		// 인스턴스 필드값 초기화하는 생성자
 		public Shape(String shapeName, int width, int height) {

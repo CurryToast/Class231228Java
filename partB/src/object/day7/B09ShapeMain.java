@@ -27,7 +27,7 @@ public class B09ShapeMain {
         System.out.println("\n::::: 클래스 타입 캐스팅 :::::");
         // 1) 자식 객체를 부모 타입으로 참조하기
         Shape temShape = new Triangle("임시 도형", 7, 8, 13);
-        // temShape.printAngle();
+        // temShape.printAngle(); => 부모 타입에는 없는 메소드이므로 오류
         temShape.print();
         System.out.println("부모 타입 참조이나 객체의 실체는 Triangle이므로 너비는 재정의 메소드로 실행됩니다.\n");
 
