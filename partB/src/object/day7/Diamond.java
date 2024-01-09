@@ -21,6 +21,12 @@ public class Diamond extends Shape {
     public void iAmDiamond() {
         System.out.println("나는 다이아몬드 ~반짝반짝!!");
     }
+
+    // Object 클래스의 toString 메소드를 오버라이드
+    @Override
+    public String toString() {
+        return "Diamond []";
+    }
 }
 
 /*
