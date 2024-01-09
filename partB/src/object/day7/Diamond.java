@@ -15,6 +15,12 @@ public class Diamond extends Shape {
     public void draw() {
         System.out.println("다이아몬드 " + this.getShapeName() + " 를 그립니다.");
     }
+
+
+    // 자식 클래스가 정의한 인스턴스 메소드 - Diamond 타입으로 선언한 참조 변수만 실행할 수 있음.
+    public void iAmDiamond() {
+        System.out.println("나는 다이아몬드 ~반짝반짝!!");
+    }
 }
 
 /*

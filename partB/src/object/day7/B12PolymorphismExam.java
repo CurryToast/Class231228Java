@@ -63,5 +63,14 @@ public class B12PolymorphismExam {
                 System.out.println(shape.getShapeName() + "는 삼각혐입니다. 넓이 : " + shape.calculateArea());
             }
         }
+
+        // UpCasting
+        Shape sh = new Diamond();
+        // sh.iAmDiamond(); => Shape 타입이므로 실행 불가
+
+        // DownCasting - sh의 실제 객체가 다운 캐스팅하려는 타입인지 검사 꼭 하기! - instanceof 연산자로 검사
+        //             - sh의 실제 객체가 아닌 것(Triangle, Square)을 Diamond로 캐스팅하면 오류
+        Diamond diamond = (Diamond)sh;
+        diamond.iAmDiamond(); // 자식 객체의 인스턴스 메소드 iAmDiamond는 반드시 다운캐스팅 해야 실행 가능
     }
 }
