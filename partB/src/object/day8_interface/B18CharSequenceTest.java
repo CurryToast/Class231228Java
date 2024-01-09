@@ -18,5 +18,7 @@ public class B18CharSequenceTest {
 
         System.out.println("결론 : 메소드 인자가 인터페이스 타입일때는");
         System.out.println("여러가지 구현 클래스가 인자로 전달될 수 있습니다.");
+
+        InterfaceA.medthodD();
     }
 }
