@@ -76,4 +76,10 @@ public class Shape {
 		System.out.println("round : " + this.round);
 	}
 
+	// Object 클래스의 toString 메소드를 오버라이드
+	@Override
+	public String toString() {
+		return "Shape [도형 이름 = " + shapeName + ", 너비 = " + width + ", 높이 = " + height + ", 면적 = " + calculateArea() + "]";
+	}
+
 }

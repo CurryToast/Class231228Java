@@ -1,6 +1,9 @@
 package object.day8;
 
 import object.day7.Diamond;
+import object.day7.Shape;
+import object.day7.Triangle;
+import object.test.Square;
 
 /*
  * 모든 자바 클래스의 부모는 Object 타입
@@ -13,6 +16,7 @@ public class B14ObjectTest {
         Object ob3 = 3; // int형 변수가 Integer 객체로 변경 => Object로 참조
         // 기본형 타입은 Wrapper 클래스로, 객체로 변경되서 Object로 업캐스팅
         //                      ㄴ Byte, Character, Short, Integer, Long, Float, Double
+        //                      ㄴ 다른 자료구조 List, Map, Set 등은 객체(클래스) 타입만 다룹니다.
 
         // Object  클래스의 메소드 - 모든 자바 클래스가 상속받고 있습니다.
 
@@ -36,5 +40,15 @@ public class B14ObjectTest {
         System.out.println("\tob2 = " + ob2);
         System.out.println("\tob3.toString = " + ob3.toString()); // Integer는 toString 재정의
         System.out.println("\tob3 = " + ob3);
+
+        System.out.println("\n우리가 만든 클래스의 toString 재정의 확인");
+        Shape sh2 = new Shape("아직 모름", 25, 20);
+        Shape diamond = new Diamond(); // 인스턴스 필드는 초기값 0 입니다.
+        Shape square = new Square();
+        Shape triangle = new Triangle("삼각형", 20, 30, 65);
+        System.out.println("\tsh2 = " + sh2);
+        System.out.println("\tdiamond = " + diamond); // 자식 클래스 Diamond가 정의한 toString
+        System.out.println("\tsquare = " + square); // 부모 클래스 Shape가 정의한 toString
+        System.out.println("\ttriangle = " + triangle); // 부모 클래스 Shape가 정의한 toString
     }
 }
