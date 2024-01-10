@@ -41,11 +41,8 @@ public class C25StudentCompareTest {
         System.out.println("이름 오름차순 정렬 후 Students 배열 : " + Arrays.toString(students));
 
         // 이름 내림차순
-        Arrays.sort(students, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
+        Arrays.sort(students, (o1, o2) -> {
                 return o2.getName().compareTo(o1.getName());
-            };
         });
         System.out.println("이름 내림차순 정렬 후 Students 배열 : " + Arrays.toString(students));
     }
