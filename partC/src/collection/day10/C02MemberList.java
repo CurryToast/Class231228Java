@@ -21,7 +21,11 @@ public class C02MemberList {
         list.remove(new Member("momo", 23));
         System.out.println("삭제 후 리스트 내용 : " + list + ", 크기 : " + list.size());
 
-        System.out.println("특정 멤버 조회하기 : " + list.indexOf(new Member("sana", 26)));
+        System.out.println("\n특정 멤버 조회하기 : " + list.indexOf(new Member("sana", 26)));
+
+        // 정수, 실수, 문자열 타입은 null로, 그 외에는 Comparator를 구현해야 합니다.
+        list.sort((e1, e2) -> { return e1.getAge() - e2.getAge(); }); // age 기준 오름차순 정렬
+        System.out.println("\n정렬 후 리스트 내용 : " + list);
 
         // new 연산을 실행할 때마다 필드 값이 같아도 동일한 객체를 생성하지 않습니다.
         // remove, indexOf 등의 메소드는 동일한 객체를 찾아서 삭제하거나 조회합니다.
