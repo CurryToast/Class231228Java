@@ -2,7 +2,7 @@ package object.day9;
 
 import java.util.Arrays;
 
-public class C21ArraySortTest {
+public class B21ArraySortTest {
     public static void main(String[] args) {
         int[] numbers = {67, 34, 65, 89, 54};
         System.out.println("초기 numbers = " + Arrays.toString(numbers));

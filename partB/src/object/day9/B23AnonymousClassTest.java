@@ -6,7 +6,7 @@ import object.day8_interface.beable.Cookable;
 // 익명의 객체 - 추상 클래스 상속 또는 인터페이스 구현 할때
 //                      ㄴ 클래스 이름 없이 객체가 생성될 수 있습니다.
 //                          ㄴ Inner Type
-public class C23AnonymousClassTest {
+public class B23AnonymousClassTest {
     public static void main(String[] args) {
         Cookable aiCooker = new Cookable() {
             // 추상 메소드 정의(구현)

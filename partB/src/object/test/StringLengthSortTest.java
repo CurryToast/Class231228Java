@@ -24,5 +24,7 @@ public class StringLengthSortTest {
         }
 
         System.out.println("정렬 후 배열 : " + Arrays.toString(messages));
+
+        sc.close();
     }
 }

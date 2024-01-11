@@ -20,5 +20,7 @@ public class AddQuizMain {
             char check = quiz[i].isRight() ? 'O' : 'X';
             System.out.println(String.format("%d번. \t%d+%d \t\t%6d \t\t %3d   %2c", (i + 1), quiz[i].getData1(), quiz[i].getData2(), quiz[i].getUserAnswer(), (quiz[i].getData1() + quiz[i].getData2()), check));
         }
+
+        sc.close();
     }
 }

@@ -68,5 +68,7 @@ public class B07ConstructorExam {
         System.out.println(num);
         System.out.println(pi);
         System.out.println(name);
+
+        sc.close();
     }
 }

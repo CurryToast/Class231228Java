@@ -24,5 +24,7 @@ public class IntClassSizeCompareTest {
         for (IntClassSizeCompare item : arr) {
             System.out.print(item.toString());
         }
+
+        sc.close();
     }
 }

@@ -3,7 +3,7 @@ package object.day9;
 import java.util.Arrays;
 
 // 순차정렬 알고리즘 구현하기
-public class C22MySortTest {
+public class B22MySortTest {
     public static void main(String[] args) {
         int[] numbers = {67, 34, 65, 89, 54};
         System.out.println("오름차순");

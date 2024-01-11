@@ -22,5 +22,7 @@ public class StringDescendingSortTest {
         for (Character c : messageArray) {
             System.out.print(c);
         }
+
+        sc.close();
     }
 }

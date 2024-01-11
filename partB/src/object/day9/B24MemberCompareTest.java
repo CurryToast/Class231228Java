@@ -2,7 +2,7 @@ package object.day9;
 
 import java.util.Arrays;
 
-public class C24MemberCompareTest {
+public class B24MemberCompareTest {
     public static void main(String[] args) {
         // Member 객체를 비교하고 Member 배열 정렬도 할 수 있습니다.
         Member momo = new Member("momomo", 23);

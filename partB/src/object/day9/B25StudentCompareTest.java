@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 // Arrays.sort 메소드에 두번째 인자로 Comparator 인터페이스 타입 객체를 전달하면 비교 기준과 정렬 방법을 실행 시점에서 결정되게 할 수 있습니다.
-public class C25StudentCompareTest {
+public class B25StudentCompareTest {
     public static void main(String[] args) {
         Student[] students = new Student[4];
         students[0] = new Student("장모모", 23);

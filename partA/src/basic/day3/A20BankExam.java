@@ -50,5 +50,6 @@ public class A20BankExam {
             }
         }
 
+        sc.close();
     }
 }

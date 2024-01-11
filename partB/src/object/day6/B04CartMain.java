@@ -45,5 +45,6 @@ public class B04CartMain {
         }
 
         System.out.println(String.format("구매한 상품의 총 가격은 %d원 입니다.", momos_cart.getTotal_Money()));
+        sc.close();
     }
 }

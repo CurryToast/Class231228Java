@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //자바라이브러리의 비교 기능 인터페이스를 활용하기 위한 선행 연습
-public class C20ComparToTest {
+public class B20ComparToTest {
 	// 비교는 sort (정렬) 메소드에서 사용하게 됩니다.
 	public static void main(String[] args) {
 		int num1 = 23; int num2 = 45;
