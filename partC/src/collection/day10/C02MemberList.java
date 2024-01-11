@@ -32,5 +32,13 @@ public class C02MemberList {
         // 참고 : String은 문자열 리터럴이 같으면 주소가 같습니다. (불변 객체)
         // 일반적으로 만들어진 클래스는 hashcode로 메모리 참조 위치가 결정됩니다.
         //                              ㄴ 인스턴스 필드 내용이 같으면 hashcode를 동일하게 만들도록 재정의합니다.
+
+        // List의 static 메소드 of
+        //              ㄴ 테스트용 리스트를 만들 때 사용합니다. 불변 객체입니다.
+        List<String> names = List.of("momo", "nana", "dahy", "nana", "sana");
+        System.out.println("\nnames : " + names);
+
+        // names.add("xxyyzz"); // 오류 : names는 불변객체 이므로.
+        // System.out.println("\nnames : " + names);
     }
 }
