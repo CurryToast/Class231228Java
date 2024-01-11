@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 /*
  * Map<K, V> : Key값으로 Value를 가져오기
+ *              ㄴ Key와 Value는 모든 타입 Object입니다.
  *              ㄴ Key는 중복된 값을 가질 수 없습니다. Key와 Value는 모두 순서가 없습니다.
  *              ㄴ Map에 입력된 순서대로 접근해야 한다면 LinkedHashMap, Key 기준 정렬된 방식으로 접근해야한다면 TreeMap
  *              ㄴ Key는 Set 특성을 가지고 있습니다.
@@ -54,5 +55,11 @@ public class C05MapExample {
             System.out.println(String.format("count=%d , key= %s , value=%s", cnt++, key, map.get(key)));
         }
 
+        System.out.println("\n조회");
+        System.out.println("map.values : " + map.values());
+        System.out.println("map.containsKey(\"tw\") : " + map.containsKey("tw"));
+        System.out.println("map.containsValue(\"에스파\") : " + map.containsValue("에스파"));
+
+        sc.close();
     }   
 }
