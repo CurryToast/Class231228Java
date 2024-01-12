@@ -62,6 +62,7 @@ public class JavaWordAppV2 {
         this.words.add(new JavaWord("protected", "보호된", 2));
         this.words.add(new JavaWord("iterator", "반복자", 3));
         this.words.add(new JavaWord("interface", "인터페이스", 2));
+        this.words.add(new JavaWord("console", "표준입출력장치", 2));
     }
 
 
@@ -101,7 +102,7 @@ public class JavaWordAppV2 {
         List<JavaWord> searchedWords = new ArrayList<>();
 
         for (JavaWord word : this.words) {
-            if (word.getEnglish().equals(keyword) || word.getKorean().equals(keyword)) {
+            if (word.getEnglish().equals(keyword)) {
                 searchedWords.add(word);
             }
         }
@@ -139,26 +140,19 @@ public class JavaWordAppV2 {
     // 레벨 검색 : 정수를 입력받아 그 정수와 동일한 레벨의 단어 출력
     private void searchWordsByField() {
         System.out.println(":: 단어 검색 ::");
+        System.out.print("메뉴 입력 (1. 단어 검색, 2. 레벨 검색) >>> ");
+        int menu = Integer.parseInt(System.console().readLine());
 
-        boolean loop = true;
-        while (loop) {
-            System.out.print("메뉴 입력 (1. 단어 검색, 2. 레벨 검색 3. 검색 종료) >>> ");
-            int menu = Integer.parseInt(System.console().readLine());
-
-            switch (menu) {
-                case 1:
-                    searchWordsByString();
-                    break;
-                case 2:
-                    searchWordsByLevel();
-                    break;
-                case 3:
-                    loop = false;
-                    break;
-                default:
-                    System.out.println("없는 메뉴입니다!");
-                    break;
-            }
+        switch (menu) {
+            case 1:
+                searchWordsByString();
+                break;
+            case 2:
+                searchWordsByLevel();
+                break;
+            default:
+                System.out.println("없는 메뉴입니다!");
+                break;
         }
     }
 
