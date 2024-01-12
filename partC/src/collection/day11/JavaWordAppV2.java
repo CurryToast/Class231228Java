@@ -5,7 +5,7 @@ import java.util.List;
 
 import collection.myapp.JavaWord;
 
-public class JavaWordAppV1 {
+public class JavaWordAppV2 {
     // 현재 클래스에서만 사용할 목적으로 접근 제한
     private List<JavaWord> words = new ArrayList<>();
 
@@ -71,9 +71,9 @@ public class JavaWordAppV1 {
         System.out.print("영어 단어 입력하세요. _");
         String english = System.console().readLine();
 
-        if (checkedWord(english).size() > 0) {
-            printList(checkedWord(english), null, null);
-            System.out.println("이미 있는 단어입니다. 정말 추가하시겠습니까? (yes)");
+        if (filteredWords(english).size() > 0) {
+            printList(filteredWords(english), null, null);
+            System.out.print("이미 있는 단어입니다. 정말 추가하시겠습니까? (yes)");
             String add = System.console().readLine();
             if (!add.equals("yes")) {
                 return;
@@ -97,7 +97,7 @@ public class JavaWordAppV1 {
     }
 
     // 영어 단어를 확인해서 일치하는 단어만 목록으로 리턴하는 메소드
-    private List<JavaWord> checkedWord(String keyword) {
+    private List<JavaWord> filteredWords(String keyword) {
         List<JavaWord> searchedWords = new ArrayList<>();
 
         for (JavaWord word : this.words) {
@@ -113,9 +113,9 @@ public class JavaWordAppV1 {
     private void searchWord() {
         System.out.print(":: 단어 검색 ::\n검색할 단어를 입력하세요. _");
         String find = System.console().readLine();
-        List<JavaWord> searchedWords = checkedWord(find);
+        List<JavaWord> searchedWords = filteredWords(find);
 
-        printList(searchedWords, String.format("\n검색 결과: %d", searchedWords.size()), "검색결과가 없습니다.");
+        printList(searchedWords, String.format("\n검색 결과: %d", searchedWords.size()), "검색 결과가 없습니다.");
     }
 
     // 단어 삭제하는 메소드
@@ -123,12 +123,19 @@ public class JavaWordAppV1 {
         System.out.print("삭제할 단어를 입력하세요 >>> ");
         String keyword = System.console().readLine();
 
-        System.out.print("\"" + keyword + "\"를 정말 삭제하겠습니까? (yes) ");
-        String remover = System.console().readLine();
-        if (remover.equals("yes")) {
-            for (int i = 0; i < words.size(); i++) {
-                if (words.get(i).getEnglish().equals(keyword)) {
-                    words.remove(i);
+        for (int i = 0; i < words.size(); i++) {
+            if (words.get(i).getEnglish().equals(keyword)) {
+                System.out.println(String.format("%s", "-".repeat(50)));
+                System.out.println(String.format("%-10s \t%-6s \t%6d", words.get(i).getEnglish(), words.get(i).getKorean(), words.get(i).getLevel()));
+                System.out.println(String.format("%s", "-".repeat(50)));
+
+                System.out.print("\"" + keyword + "\"를 정말 삭제하겠습니까? (yes) ");
+                String remover = System.console().readLine();
+                if (remover.equals("yes")) {
+                    if (words.get(i).getEnglish().equals(keyword)) {
+                        words.remove(i);
+                        i--; // 삭제되면 이후 값들이 앞으로 땡겨지면서 인덱스 값이 1씩 줄어듬
+                    }
                 }
             }
         }
@@ -143,8 +150,8 @@ public class JavaWordAppV1 {
             for (JavaWord word : words) {
                 System.out.println(String.format("%-10s \t%-6s \t%6d", word.getEnglish(), word.getKorean(), word.getLevel()));
             }
-        } else if (noString != null) {
-            System.out.println(noString);
+        } else {
+            System.out.println((noString == null) ? "목록이 없습니다." : noString);
         }
 
         System.out.println(String.format("%s", "-".repeat(50)));
@@ -154,7 +161,7 @@ public class JavaWordAppV1 {
     public static void main(String[] args) {
         // 프로그램 실행하는 객체 생성하고 (메소드로 기능을 분리할때 main이 호출하는 static을 없에기 위함.)
         //                              start 메소드 프로그램 실행 내용을 코딩
-        JavaWordAppV1 app = new JavaWordAppV1();
+        JavaWordAppV2 app = new JavaWordAppV2();
         app.start();
     }
 }

@@ -3,7 +3,7 @@ package collection.myapp;
 import java.util.Scanner;
 
 // 단어장 시작 프로그램
-public class JavaWordApp {
+public class JavaWordAppV1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String menu;
