@@ -35,7 +35,7 @@ public class JavaWordAppV2 {
                     wordList(); // 단어 목록 출력
                     break;
                 case 3:
-                    searchWord(); // 단어 검색
+                    searchWordsByField(); // 단어 검색
                     break;
                 case 4:
                     removeWord(); // 단어 삭제
@@ -101,7 +101,7 @@ public class JavaWordAppV2 {
         List<JavaWord> searchedWords = new ArrayList<>();
 
         for (JavaWord word : this.words) {
-            if (word.getEnglish().equals(keyword)) {
+            if (word.getEnglish().equals(keyword) || word.getKorean().equals(keyword)) {
                 searchedWords.add(word);
             }
         }
@@ -110,12 +110,56 @@ public class JavaWordAppV2 {
     }
 
     // 입력받은 단어를 목록에서 검색하는 메소드
-    private void searchWord() {
-        System.out.print(":: 단어 검색 ::\n검색할 단어를 입력하세요. _");
+    private void searchWordsByString() {
+        System.out.print("검색할 단어를 입력하세요. _");
         String find = System.console().readLine();
         List<JavaWord> searchedWords = filteredWords(find);
 
-        printList(searchedWords, String.format("\n검색 결과: %d", searchedWords.size()), "검색 결과가 없습니다.");
+        printList(searchedWords, String.format("\n검색 결과: %d개", searchedWords.size()), "검색 결과가 없습니다.");
+    }
+
+    // 입력받은 레벨을 기준으로 단어를 검색하는 메소드
+    private void searchWordsByLevel() {
+        System.out.print("검색할 레벨을 입력하세요. _");
+        int level = Integer.parseInt(System.console().readLine());
+
+        List<JavaWord> searchedWords = new ArrayList<>();
+
+        for (JavaWord word : this.words) {
+            if (word.getLevel() == level) {
+                searchedWords.add(word);
+            }
+        }
+
+        printList(searchedWords, String.format("\n검색 결과: %d개", searchedWords.size()), "검색 결과가 없습니다.");
+    }
+
+    // 검색 메소드
+    // 단어 검색 : 문자열을 입력받아 그 문자열과 같은 단어 출력
+    // 레벨 검색 : 정수를 입력받아 그 정수와 동일한 레벨의 단어 출력
+    private void searchWordsByField() {
+        System.out.println(":: 단어 검색 ::");
+
+        boolean loop = true;
+        while (loop) {
+            System.out.print("메뉴 입력 (1. 단어 검색, 2. 레벨 검색 3. 검색 종료) >>> ");
+            int menu = Integer.parseInt(System.console().readLine());
+
+            switch (menu) {
+                case 1:
+                    searchWordsByString();
+                    break;
+                case 2:
+                    searchWordsByLevel();
+                    break;
+                case 3:
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("없는 메뉴입니다!");
+                    break;
+            }
+        }
     }
 
     // 단어 삭제하는 메소드
