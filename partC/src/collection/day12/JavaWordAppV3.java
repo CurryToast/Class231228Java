@@ -29,7 +29,11 @@ public class JavaWordAppV3 {
             System.out.println("\t 4. 단어 삭제");
             System.out.println("\t 5. 프로그램 종료");
             System.out.print("선택 > "); // 메소드에 입력 기능이 있을 때는 Scanner 관리가 불편
-            int select = Integer.parseInt(System.console().readLine()); // 키보드 입력 문자열을 정수로 변환
+            int select = 0;
+            try {
+                select = Integer.parseInt(System.console().readLine()); // 키보드 입력 문자열을 정수로 변환
+            } catch (NumberFormatException e) {
+            }
 
             // System.console() : 시스템의 콘솔(표준 입출력 장치) 객체를 리턴.
             // readLine() : 입력 메소드 실행
@@ -79,7 +83,14 @@ public class JavaWordAppV3 {
         System.out.print("한글 단어 입력하세요. _");
         String korean = System.console().readLine();
         System.out.print("단어 레벨 입력하세요.(1:초급, 2:중급, 3:고급) _");
-        int level = Integer.parseInt(System.console().readLine());
+        int level = 0;
+
+        try {
+            level = Integer.parseInt(System.console().readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("없는 레벨입니다.");
+            return;
+        }
 
         words.add(new JavaWord(english, korean, level));
         words.print();
@@ -112,7 +123,12 @@ public class JavaWordAppV3 {
     private void searchWordsByField() {
         System.out.println(":: 단어 검색 ::");
         System.out.print("메뉴 입력 (1. 단어 검색, 2. 레벨 검색) >>> ");
-        int menu = Integer.parseInt(System.console().readLine());
+        int menu = 0;
+
+        try {
+            menu = Integer.parseInt(System.console().readLine());
+        } catch (NumberFormatException e) {
+        }
 
         switch (menu) {
             case 1:
