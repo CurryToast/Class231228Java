@@ -22,11 +22,13 @@ public class TryCatchTest {
         }
 
         int [] arrays = {11, 22, 33, 44, 55};
-        // System.out.println(arrays[0]);
-        // System.out.println(arrays[1]);
+        System.out.println(arrays[0]);
+        System.out.println(arrays[1]);
         // System.out.println(arrays.length);
 
         System.out.println("마지막 명령어 입니다.");
+
+        sc.close();
     }
 
     public static void indexException() {
