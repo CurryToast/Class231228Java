@@ -170,10 +170,8 @@ public class JavaWordAppV2 {
                 System.out.print("\"" + keyword + "\"를 정말 삭제하겠습니까? (yes) ");
                 String remover = System.console().readLine();
                 if (remover.equals("yes")) {
-                    if (words.get(i).getEnglish().equals(keyword)) {
-                        words.remove(i);
-                        i--; // 삭제되면 이후 값들이 앞으로 땡겨지면서 인덱스 값이 1씩 줄어듬
-                    }
+                    words.remove(i);
+                    i--; // 삭제되면 이후 값들이 앞으로 땡겨지면서 인덱스 값이 1씩 줄어듬
                 }
             }
         }
@@ -183,7 +181,7 @@ public class JavaWordAppV2 {
     private void printList(List<JavaWord> words, String title, String noString) {
         System.out.println(String.format("%s\n%s", (title == null ? "" : title), "-".repeat(50)));
 
-        if (words.size() > 0 ) {
+        if (words.size() > 0) {
             System.out.println(String.format("%-10s \t%-9s \t%8s", "English", "Korean", "Level"));
             for (JavaWord word : words) {
                 System.out.println(String.format("%-10s \t%-6s \t%6d", word.getEnglish(), word.getKorean(), word.getLevel()));

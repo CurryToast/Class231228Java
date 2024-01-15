@@ -61,5 +61,5 @@ public class C05MapExample {
         System.out.println("map.containsValue(\"에스파\") : " + map.containsValue("에스파"));
 
         sc.close();
-    }   
+    }
 }
