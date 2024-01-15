@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 // File 클래스 : 운영체제의 파일 클래스
-public class CheckedExceptionTest {
+public class D02CheckedExceptionTest {
     public static void main(String[] args) {
         // 생성하려는 파일의 이름으로 File 객체를 정의
         // File file = new File("F:\\테스트.md"); // 없는 드라이브 지정 -> 예외 발생

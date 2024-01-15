@@ -2,7 +2,7 @@ package io.day12;
 
 // 표준 입출력 키보드 테스트
 // 키보드 입력 : new Scanner(System.in) 또는 System.console().readLine()
-public class StandardIOTest {
+public class D03StandardIOTest {
     public static void main(String[] args) {
         int b, count = 0;
         System.out.print("입력하세요 ㅇㅇㅇㅇㅇㅇㅇ ");

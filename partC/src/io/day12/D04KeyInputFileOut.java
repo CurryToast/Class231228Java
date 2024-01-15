@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 // 키보드 입력을 파일로 출력
-public class KeyInputFileOut {
+public class D04KeyInputFileOut {
     public static void main(String[] args) {
         FileOutputStream fos = null;
         try {
@@ -24,3 +24,7 @@ public class KeyInputFileOut {
         }
     }
 }
+
+
+// 바이트 기반 스트림은 문자 형식의 파일이 아닐때
+// 문자기반 기반 스트림은 문자 단위 입출력.
