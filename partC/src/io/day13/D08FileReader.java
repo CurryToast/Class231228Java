@@ -2,13 +2,15 @@ package io.day13;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class D08FileReader {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
 
         // readByChar();
-        readByCharArray();
+        // readByCharArray();
+        readByScanner();
 
         long end = System.currentTimeMillis();
         System.out.println(String.format("\n소요시간 : %,d ms", (end - start)));
@@ -72,5 +74,23 @@ public class D08FileReader {
         } catch (Exception e) {
             System.out.println("파일 입력 예외 : " + e.getMessage());
         }
+    }
+
+    public static void readByScanner(){
+        String filePath = "단어장.txt";
+        int count = 0;
+        // Scanner 클래스 : 1) 한줄씩 읽는 nextLine 메소드, 2) 구분 기호로 분리해서 읽는 방법 
+        try(Scanner fc = new Scanner(new FileReader(filePath))) {
+            fc.useDelimiter(",|\\n"); // 구분기호(delimiter) 또는 엔터
+            // 파일의 끝까지 반복
+            while (fc.hasNext()) {
+                String token = fc.next();
+                System.out.println(token);
+                count++;
+            }
+
+        } catch (Exception e) { }
+
+        System.out.println("읽은 단어수 : " + count);
     }
 }
