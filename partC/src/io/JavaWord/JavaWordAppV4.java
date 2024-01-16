@@ -46,9 +46,7 @@ public class JavaWordAppV4 {
                     wordList();
                     break;
                 case 5:
-                    System.out.println("프로그램을 종료합니다.");
-                    words.fileSave();
-                    System.exit(0);
+                    closeProgram();
                     break;
                 default:
                     System.out.println("없는 메뉴입니다!");
@@ -150,6 +148,12 @@ public class JavaWordAppV4 {
 
             position = words.indexOfWord(keyword, ++position);
         }
+    }
+
+    private void closeProgram() {
+        System.out.println("프로그램을 종료합니다.");
+        words.fileSave();
+        System.exit(0);
     }
 
 }
