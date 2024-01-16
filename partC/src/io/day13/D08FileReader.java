@@ -2,7 +2,11 @@ package io.day13;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import collection.myapp.JavaWord;
 
 public class D08FileReader {
     public static void main(String[] args) {
@@ -10,7 +14,8 @@ public class D08FileReader {
 
         // readByChar();
         // readByCharArray();
-        readByScanner();
+        // readByScanner();
+        readByScanner2();
 
         long end = System.currentTimeMillis();
         System.out.println(String.format("\n소요시간 : %,d ms", (end - start)));
@@ -92,5 +97,23 @@ public class D08FileReader {
         } catch (Exception e) { }
 
         System.out.println("읽은 단어수 : " + count);
+    }
+
+    public static void readByScanner2(){
+        String filePath = "단어장.txt";
+        List<JavaWord> list = new ArrayList<>();
+
+        try(Scanner fc = new Scanner(new FileReader(filePath))) {
+            fc.useDelimiter(",|\\n");
+
+            while (fc.hasNext()) {
+                list.add(new JavaWord(fc.next().trim(), fc.next().trim(), Integer.parseInt(fc.next().trim())));
+            }
+
+            for(JavaWord word : list) {
+                System.out.println(word);
+            }
+
+        } catch (Exception e) { }
     }
 }
