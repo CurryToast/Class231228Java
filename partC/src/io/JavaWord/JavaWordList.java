@@ -83,6 +83,13 @@ public class JavaWordList implements WordList {
 
     @Override
     public JavaWord remove(int index) {
+        if (index < 0 || index > words.size()) {
+            //새로운 Exception 객체를 생성하면 개발자가 만든 예외가 발생합니다.
+            // 발생시킬 익셉션 종류는 IllegalArgumentException과 같은 이름으로 많이 사용합니다.
+            // 예를 들면, 웹개발 할때는 모든 예외를 한번에 처리하기 위해 이런 방법을 사용합니다.
+            throw new IllegalArgumentException("삭제할 인덱스 범위가 잘못된 값입니다.");
+        }
+
         JavaWord word = words.remove(index);
         return word;
     }
