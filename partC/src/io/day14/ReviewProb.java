@@ -1,5 +1,7 @@
 package io.day14;
 
+import java.io.IOException;
+
 import collection.myapp.JavaWord;
 import io.JavaWord.JavaWordList;
 
@@ -22,8 +24,8 @@ import io.JavaWord.JavaWordList;
 
 public class ReviewProb {
     public static void main(String[] args) {
-        prob_8();
-        // prob_10();
+        // prob_8();
+        prob_10();
     }
 
     // 8번
@@ -49,7 +51,8 @@ public class ReviewProb {
             int b = System.in.read(buffer);
             System.out.println("입력 바이트 수 : " + b);
             System.out.println("입력한 문자열 : " + new String(buffer));
-        } catch (Exception e) {
+            System.out.println("입력한 문자열 정수 변환 : " + Integer.parseInt(new String(buffer).trim()));
+        } catch (IOException | NumberFormatException e) {
             System.out.println("예외 : " + e.getMessage());
         }
     }
