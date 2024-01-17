@@ -63,8 +63,7 @@ public class JavaWordList implements WordList {
     @Override
     public void add(JavaWord word) {
         if (words.size() == WordList.MAX_LENGTH) {
-            System.out.println("단어장이 꽉 찼습니다. 단어장을 새로 만들어 주세요.");
-            return;
+            throw new IllegalArgumentException("단어장이 꽉 찼습니다. 단어장을 새로 만들어 주세요.");
         }
 
         words.add(word);
