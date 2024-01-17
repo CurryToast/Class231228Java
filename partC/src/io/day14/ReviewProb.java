@@ -53,7 +53,7 @@ public class ReviewProb {
             System.out.println("입력한 문자열 : " + new String(buffer));
             System.out.println("입력한 문자열 정수 변환 : " + Integer.parseInt(new String(buffer).trim()));
         } catch (IOException | NumberFormatException e) {
-            System.out.println("예외 : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
