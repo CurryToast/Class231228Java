@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\임현범\\java\\Class231228Java\\lombok.jar",
+        "d:\\임현범\\java\\Class231228Java\\ojdbc11.jar"
+    ]
+}
