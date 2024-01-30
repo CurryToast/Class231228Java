@@ -64,15 +64,16 @@ public class TblCustomerDao {
         ) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Delete 실행 오류 " + e.getMessage());
         }
     }
 
     // 회원 정보 조회
+    // 조회 결과는 0 혹은 1개.
     public CustomerVo getCustomer(String customerId) {
         String sql = "SELECT * FROM TBL_CUSTOM WHERE CUSTOM_ID = ?";
-        List<CustomerVo> vo = new ArrayList<CustomerVo>();
+        CustomerVo vo = null;
 
         try (
             Connection conn = getConnection();
@@ -80,27 +81,24 @@ public class TblCustomerDao {
         ) {
             pstmt.setString(1, customerId);
             ResultSet result = pstmt.executeQuery();
-            while (result.next()) {
-                vo.add(new CustomerVo(
+            if (result.next()) { // 첫번째 행 조회 결과가 있으면 true
+                vo = new CustomerVo(
                     result.getString("CUSTOM_ID"),
                     result.getString("NAME"),
                     result.getString("EMAIL"),
                     result.getInt("AGE"),
                     result.getDate("REG_DATE")
-                ));
+                );
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("select 쿼리 실행 실패 : " + e.getMessage());
         }
 
-        if (vo.size() > 0) {
-            return vo.get(0);
-        }
-
-        return null;
+        return vo;
     }
 
     // 관리자를 위한 기능 : 모든 회원정보 조회
-    public List<CustomerVo> allCustomer() {
+    public List<CustomerVo> allCustomers() {
         String sql = "SELECT * FROM TBL_CUSTOM";
         List<CustomerVo> vo = new ArrayList<CustomerVo>();
 
@@ -118,7 +116,8 @@ public class TblCustomerDao {
                     result.getDate("REG_DATE")
                 ));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("select 쿼리 실행 실패 : " + e.getMessage());
         }
 
         return vo;

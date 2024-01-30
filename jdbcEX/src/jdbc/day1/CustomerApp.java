@@ -49,7 +49,7 @@ public class CustomerApp {
         System.out.println(dao.getCustomer(customId));
 
         System.out.println("전체 회원 조회");
-        for (CustomerVo allvo : dao.allCustomer()) {
+        for (CustomerVo allvo : dao.allCustomers()) {
             System.out.println(allvo);
         }
     }   //main end
