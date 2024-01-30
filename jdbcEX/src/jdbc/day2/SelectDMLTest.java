@@ -12,21 +12,27 @@ import jdbc.day1.OracleConnectionUtil;
 
 public class SelectDMLTest {
     public static void main(String[] args) {
+        List<CustomerVo> result = selectAll_4();
+        System.out.println(result);
+    }
+
+    public static List<CustomerVo> selectAll_4() {
         Connection connection = OracleConnectionUtil.getConnection();
         String sql = "SELECT * from tbl_custom";
 
+        List<CustomerVo> list = new ArrayList<CustomerVo>();
+
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();
-            List<CustomerVo> list = new ArrayList<CustomerVo>();
 
             while (rs.next()) { // 읽어올 다음 레코드가 있으면 true
                 list.add(new CustomerVo(rs.getString("custom_id"), rs.getString("name"), rs.getString("email"),  rs.getInt("age"), rs.getDate("reg_date")));
             }
-
-            System.out.println(list);
         } catch (SQLException e) {
             System.out.println("select 쿼리 실행 오류 : " + e.getMessage());
         }
+
+        return list;
     }
 
     public static void selectAll_3() {
