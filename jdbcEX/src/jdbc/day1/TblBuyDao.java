@@ -73,7 +73,13 @@ public class TblBuyDao {
             pstmt.setString(1, customId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                voList.add(new BuyVo(rs.getInt("BUY_IDX"), rs.getString("CUSTOMID"), rs.getString("PCODE"), rs.getInt("QUANTITY"), rs.getDate("BUY_DATE")));
+                voList.add(new BuyVo(
+                    rs.getInt("BUY_IDX"),
+                    rs.getString("CUSTOMID"),
+                    rs.getString("PCODE"),
+                    rs.getInt("QUANTITY"),
+                    rs.getDate("BUY_DATE")
+                ));
             }
         } catch (SQLException e) {
             System.out.println("select 쿼리 실패 " + e.getMessage());

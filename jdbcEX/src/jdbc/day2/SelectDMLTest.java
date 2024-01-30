@@ -26,7 +26,13 @@ public class SelectDMLTest {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) { // 읽어올 다음 레코드가 있으면 true
-                list.add(new CustomerVo(rs.getString("custom_id"), rs.getString("name"), rs.getString("email"),  rs.getInt("age"), rs.getDate("reg_date")));
+                list.add(new CustomerVo(
+                    rs.getString("custom_id"),
+                    rs.getString("name"),
+                    rs.getString("email"),
+                    rs.getInt("age"),
+                    rs.getDate("reg_date")
+                ));
             }
         } catch (SQLException e) {
             System.out.println("select 쿼리 실행 오류 : " + e.getMessage());
