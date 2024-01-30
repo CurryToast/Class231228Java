@@ -49,8 +49,8 @@ public class CustomerVo { // TBL_CUSTOM 테이블과 1대 1 대응되는 변수�
 
     @Override
     public String toString() {
-        return "BuyVo [customId=" + customId + ", name=" + name + ", email=" + email + ", age=" + age + ", reg_date="
-                + reg_date + "]";
+        return "CustomerVo [customId=" + customId + ", name=" + name + ", email=" + email + ", age=" + age + ", reg_date="
+                + reg_date + "]\n";
     }
 
 
