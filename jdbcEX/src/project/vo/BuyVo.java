@@ -1,4 +1,4 @@
-package jdbc.day1;
+package project.vo;
 
 import java.sql.Date;
 

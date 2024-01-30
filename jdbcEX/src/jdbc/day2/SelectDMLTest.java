@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbc.day1.CustomerVo;
 import jdbc.day1.OracleConnectionUtil;
+import project.vo.CustomerVo;
 
 public class SelectDMLTest {
     public static void main(String[] args) {

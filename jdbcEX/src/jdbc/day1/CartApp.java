@@ -1,5 +1,8 @@
 package jdbc.day1;
 
+import project.dao.TblBuyDao;
+import project.vo.BuyVo;
+
 public class CartApp {
     public static void main(String[] args) {
         System.out.print("구매할 사용자 간편 로그인");

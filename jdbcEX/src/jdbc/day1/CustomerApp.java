@@ -1,5 +1,8 @@
 package jdbc.day1;
 
+import project.dao.TblCustomerDao;
+import project.vo.CustomerVo;
+
 public class CustomerApp {
     public static void main(String[] args) {
         System.out.println("우리 쇼핑몰 [회원가입] 환영합니다.");
