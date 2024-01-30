@@ -81,7 +81,13 @@ public class TblCustomerDao {
             pstmt.setString(1, customerId);
             ResultSet result = pstmt.executeQuery();
             while (result.next()) {
-                vo.add(new CustomerVo(result.getString("CUSTOM_ID"), result.getString("NAME"), result.getString("EMAIL"), result.getInt("AGE"), result.getDate("REG_DATE")));
+                vo.add(new CustomerVo(
+                    result.getString("CUSTOM_ID"),
+                    result.getString("NAME"),
+                    result.getString("EMAIL"),
+                    result.getInt("AGE"),
+                    result.getDate("REG_DATE")
+                ));
             }
         } catch (Exception e) {
         }
@@ -102,9 +108,15 @@ public class TblCustomerDao {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
         ) {
-            ResultSet result = pstmt.executeQuery(sql);
+            ResultSet result = pstmt.executeQuery();
             while (result.next()) {
-                vo.add(new CustomerVo(result.getString("CUSTOM_ID"), result.getString("NAME"), result.getString("EMAIL"), result.getInt("AGE"), result.getDate("REG_DATE")));
+                vo.add(new CustomerVo(
+                    result.getString("CUSTOM_ID"),
+                    result.getString("NAME"),
+                    result.getString("EMAIL"),
+                    result.getInt("AGE"),
+                    result.getDate("REG_DATE")
+                ));
             }
         } catch (Exception e) {
         }

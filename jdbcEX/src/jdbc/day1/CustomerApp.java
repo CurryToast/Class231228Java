@@ -43,10 +43,10 @@ public class CustomerApp {
         customId = System.console().readLine();
         dao.delete(customId);
 
-        // System.out.println("회원 조회");
-        // System.out.print("조회할 회원 아이디 : ");
-        // customId = System.console().readLine();
-        // System.out.println(dao.getCustomer(customId));
+        System.out.println("회원 조회");
+        System.out.print("조회할 회원 아이디 : ");
+        customId = System.console().readLine();
+        System.out.println(dao.getCustomer(customId));
 
         System.out.println("전체 회원 조회");
         for (CustomerVo allvo : dao.allCustomer()) {
