@@ -48,7 +48,10 @@ public class CartApp {
 
     public static void removeItems(TblBuyDao dao, String customId) {
         System.out.println("장바구니 출력");
-        dao.printBuyVoList(dao.selectedBuyListByCustomId(customId));
+        for (BuyVo vo : dao.selectedBuyListByCustomId(customId)) {
+            System.out.println(vo);
+        }
+
         System.out.print("\n삭제할 항목의 buy_idx 입력 >> ");
         int idx = Integer.parseInt(System.console().readLine());
         dao.remove(idx);
@@ -56,7 +59,10 @@ public class CartApp {
 
     public static void updateQuantity(TblBuyDao dao, String customId) {
         System.out.println("장바구니 출력");
-        dao.printBuyVoList(dao.selectedBuyListByCustomId(customId));
+        for (BuyVo vo : dao.selectedBuyListByCustomId(customId)) {
+            System.out.println(vo);
+        }
+
         System.out.print("\n구매수량을 변경할 항목의 buy_idx 입력 >> ");
         int idx = Integer.parseInt(System.console().readLine());
         System.out.print("변경할 구매수량 입력 >> ");

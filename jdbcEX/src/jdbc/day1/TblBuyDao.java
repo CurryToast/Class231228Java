@@ -82,10 +82,4 @@ public class TblBuyDao {
         return voList;
     }
 
-
-    public void printBuyVoList(List<BuyVo> list) {
-        for (BuyVo vo : list) {
-            System.out.println(vo);
-        }
-    }
 }
