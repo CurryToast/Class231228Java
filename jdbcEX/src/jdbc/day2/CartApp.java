@@ -1,10 +1,12 @@
-package jdbc.day1;
+package jdbc.day2;
 
 import java.util.List;
 
 import project.dao.TblBuyDao;
+import project.dao.TblProductDao;
 import project.vo.BuyVo;
 import project.vo.CustomerBuyVo;
+import project.vo.ProductVo;
 
 public class CartApp {
     public static void main(String[] args) {
@@ -13,23 +15,36 @@ public class CartApp {
         String id = System.console().readLine();
 
         TblBuyDao dao = new TblBuyDao();
+        TblProductDao pdao = new TblProductDao();
+
+        /*
+         *  상품 목록을 선택한 카테고리에 대해 보여주기
+         *  또는 상품명으로 검색
+         *  또는 입력한 아이디로 구매한 구매 내역 보여주기
+         */
 
         boolean run = true;
         while (run) {
-            System.out.println("[1] 장바구니 담기  [2] 구매 취소  [3] 구매 수량 변경 [4] 종료");
+            System.out.println("[1] 장바구니 담기  [2] 구매 취소  [3] 구매 수량 변경 [4] 상품 검색 [5] 구매 내역 조회 [6] 종료");
             try {
                 int select = Integer.parseInt(System.console().readLine());
                 switch (select) {
-                    case 1: // buy 테이블에 insert (1행)
+                    case 1:
                         addItems(dao, id);
                         break;
-                    case 2: // delete
+                    case 2:
                         removeItems(dao, id);
                         break;
-                    case 3: // update
+                    case 3:
                         updateQuantity(dao, id);
                         break;
                     case 4:
+                        searchProduct(pdao);
+                        break;
+                    case 5:
+                        selectBuyList(dao, id);
+                        break;
+                    case 6:
                         System.out.println("프로그램 종료");
                         System.exit(0);
                         break;
@@ -77,7 +92,52 @@ public class CartApp {
         int quantity = Integer.parseInt(System.console().readLine());
         dao.update(idx, quantity);
     }
-}
 
-// tbl_buy 테이블을 대상으로 insert, update, delete 할 수 있는 dao 클래스 TblBuyDao.java 만들기
-//         테이블 PK 컬럼은 buy_idx -> update, delete의 조건 컬럼입니다.
+    public static void searchProduct(TblProductDao dao) {
+        System.out.print("검색 메뉴 입력 (1. 카테고리로 검색, 2. 상품명으로 검색) >>  ");
+        try {
+            int menu = Integer.parseInt(System.console().readLine());
+
+            switch (menu) {
+                case 1:
+                    searchProductByCategory(dao);
+                    break;
+                case 2:
+                    searchProductByPname(dao);
+                    break;
+                default:
+                    System.out.println("없는 메뉴입니다.");
+                    break;
+            }
+        } catch (NumberFormatException e) {
+        }
+    }
+
+    public static void searchProductByCategory(TblProductDao dao) {
+        System.out.print("검색할 카테고리 입력 >> ");
+        String category = System.console().readLine();
+
+        List<ProductVo> list = dao.selectByCategory(category);
+        for (ProductVo vo : list) {
+            System.out.println(vo);
+        }
+    }
+
+    public static void searchProductByPname(TblProductDao dao) {
+        System.out.print("검색할 상품명 입력 >> ");
+        String pname = System.console().readLine();
+
+        List<ProductVo> list = dao.selectByPname(pname);
+        for (ProductVo vo : list) {
+            System.out.println(vo);
+        }
+    }
+
+    public static void selectBuyList(TblBuyDao dao, String id) {
+        System.out.println("구매 내역 조회");
+        List<CustomerBuyVo> list = dao.selectCustomerBuyList(id);
+        for (CustomerBuyVo vo : list) {
+            System.out.println(vo);
+        }
+    }
+}
