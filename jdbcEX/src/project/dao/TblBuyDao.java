@@ -74,7 +74,7 @@ public class TblBuyDao {
                 "JOIN TBL_PRODUCT tp \r\n" + //
                 "ON tb.PCODE = tp.PCODE \r\n" + //
                 "WHERE tb.CUSTOMID = ? \r\n" + //
-                "ORDER BY BUY_DATE";
+                "ORDER BY BUY_DATE DESC";
 
         try (
             Connection conn = getConnection();

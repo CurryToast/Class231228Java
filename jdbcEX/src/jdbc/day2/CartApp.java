@@ -53,6 +53,7 @@ public class CartApp {
                         break;
                 }
             } catch (NumberFormatException e) {
+                System.out.println("잘못된 입력입니다.");
             }
         }
     }
@@ -110,6 +111,7 @@ public class CartApp {
                     break;
             }
         } catch (NumberFormatException e) {
+            System.out.println("잘못된 입력입니다.");
         }
     }
 
