@@ -4,6 +4,7 @@ import java.util.List;
 
 import project.dao.TblBuyDao;
 import project.dao.TblProductDao;
+import project.vo.BuyVo;
 import project.vo.CustomerBuyVo;
 import project.vo.ProductVo;
 
@@ -42,6 +43,26 @@ public class CartApp_2 {
             // int select = Integer.parseInt(System.console().readLine());
             String select = System.console().readLine();
             switch (select) {
+                case "B", "b":
+                    showProductList(proDao);
+                    System.out.print("구매할 상품 코드 입력 >>> ");
+                    String pcode = System.console().readLine();
+                    System.out.print("구매할 수량 입력 >> ");
+                    int quantity = Integer.parseInt(System.console().readLine());
+
+                    BuyVo vo = new BuyVo(customerId, pcode, quantity);
+                    buyDao.add(vo);
+                    break;
+                case "D", "d":
+                    System.out.println("장바구니 목록");
+                    List<CustomerBuyVo> list = buyDao.selectCustomerBuyList(customerId);
+                    for (CustomerBuyVo b : list) {
+                        System.out.println(b);
+                    }
+                    System.out.print("\n삭제할 항목의 buy_idx 입력 >> ");
+                    int idx = Integer.parseInt(System.console().readLine());
+                    buyDao.remove(idx);
+                    break;
                 case "M", "m": // 나의 구매내역
                     List<CustomerBuyVo> result = buyDao.selectCustomerBuyList(customerId);
                     for (CustomerBuyVo customerBuyVo : result) {
@@ -52,25 +73,43 @@ public class CartApp_2 {
                     System.out.println("카테고리 : A1-과일, A2-수입과일, B1-인스턴스, B2-선물세트, C1-과자류");
                     System.out.print("카테고리 입력 >> ");
                     String category = System.console().readLine();
-                    List<ProductVo> list = proDao.selectByCategory(category);
-                    for (ProductVo productVo : list) {
+                    List<ProductVo> pv = proDao.selectByCategory(category);
+                    for (ProductVo productVo : pv) {
                         System.out.println(productVo);
                     }
                     break;
                 case "P", "p":
                     System.out.print("상품명 검색 >> ");
                     String pname = System.console().readLine();
-                    list = proDao.selectByPname(pname);
-                    for (ProductVo productVo : list) {
+                    List<ProductVo> list2 = proDao.selectByPname(pname);
+                    for (ProductVo productVo : list2) {
                         System.out.println(productVo);
                     }
                     break;
+                case "Q", "q":
+                    System.out.println("장바구니 목록");
+                    list = buyDao.selectCustomerBuyList(customerId);
+                    for (CustomerBuyVo b : list) {
+                        System.out.println(b);
+                    }
+                    System.out.print("\n구매수량을 변경할 항목의 buy_idx 입력 >> ");
+                    int buyidx = Integer.parseInt(System.console().readLine());
+                    System.out.print("변경할 구매수량 입력 >> ");
+                    int quan = Integer.parseInt(System.console().readLine());
+                    buyDao.update(buyidx, quan);
                 case "X", "x":
                     run = false;
                     break;
                 default:
                     break;
             }
+        }
+    }
+
+    public static void showProductList(TblProductDao proDao) {
+        List<ProductVo> list = proDao.selectAllProduct();
+        for (ProductVo productVo : list) {
+            System.out.println(productVo);
         }
     }
 

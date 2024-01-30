@@ -21,7 +21,7 @@ public class TblBuyDao {
     }
 
     public void add(BuyVo vo) {
-        String sql = "INSERT INTO TBL_BUY (BUY_IDX , CUSTOMID, PCODE, QUANTITY) VALUES (buy_pk_seq.nextval, ?, ?, ?)";
+        String sql = "INSERT INTO TBL_BUY (BUY_IDX , CUSTOMID, PCODE, QUANTITY, BUY_DATE) VALUES (buy_pk_seq.nextval, ?, ?, ?, SYSDATE)";
 
         try (
             Connection conn = getConnection();

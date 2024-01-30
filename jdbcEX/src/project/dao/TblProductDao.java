@@ -20,6 +20,30 @@ public class TblProductDao {
     }
 
 
+    public List<ProductVo> selectAllProduct() {
+        String sql = "select * from tbl_product";
+        List<ProductVo> list = new ArrayList<ProductVo>();
+
+        try (
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+        ) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ProductVo(
+                    rs.getString("pcode"),
+                    rs.getString("category"),
+                    rs.getString("name"), 
+                    rs.getInt("price")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("select 쿼리 실행 실패 : " + e.getMessage());
+        }
+
+        return list;
+    }
+
     public List<ProductVo> selectByCategory(String category) {
         String sql = "SELECT * FROM TBL_PRODUCT WHERE CATEGORY = ? ORDER BY PNAME";
         List<ProductVo> list = selectByOneString(sql, category);
