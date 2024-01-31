@@ -20,8 +20,12 @@ public class TblBuyDao {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
-    public void add(BuyVo vo) {
-        String sql = "INSERT INTO TBL_BUY (BUY_IDX , CUSTOMID, PCODE, QUANTITY, BUY_DATE) VALUES (buy_pk_seq.nextval, ?, ?, ?, SYSDATE)";
+    // executeUpdate 메소드는 insert, update, delete가 정상 실행되면(반영된 행이 있으면) 1을 리턴
+    //                              ㄴ update, delete는 조건에 맞는 행이 없으면 0을 리턴
+    public int add(BuyVo vo) {
+        int result = 0;
+        String sql = "INSERT INTO TBL_BUY (BUY_IDX , CUSTOMID, PCODE, QUANTITY, BUY_DATE) \r\n" + //
+                "VALUES (buy_pk_seq.nextval, ?, ?, ?, SYSDATE)";
 
         try (
             Connection conn = getConnection();
@@ -30,13 +34,16 @@ public class TblBuyDao {
             pstmt.setString(1, vo.getCustomid());
             pstmt.setString(2, vo.getPcode());
             pstmt.setInt(3, vo.getQuantity());
-            pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("insert 쿼리 실패 " + e.getMessage());
+            System.out.println("장바구니 추가 실패 " + e.getMessage());
         }
+
+        return result;
     }
 
-    public void remove(int buyIdx) {
+    public int remove(int buyIdx) {
+        int result = 0;
         String sql = "DELETE FROM TBL_BUY tb WHERE buy_idx = ?";
 
         try (
@@ -44,13 +51,17 @@ public class TblBuyDao {
             PreparedStatement pstmt = conn.prepareStatement(sql);
         ) {
             pstmt.setInt(1, buyIdx);
-            pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("delete 쿼리 실패 " + e.getMessage());
+            // buy_idx가 없는 값이면 오류는 아니고, delete 반영한 행의 개수가 0이 됩니다.
+            System.out.println("구매취소 실패 " + e.getMessage());
         }
+
+        return result;
     }
 
-    public void update(int buyIdx, int quantity) {
+    public int update(int buyIdx, int quantity) {
+        int result = 0;
         String sql = "UPDATE TBL_BUY SET QUANTITY = ? WHERE BUY_IDX = ?";
 
         try (
@@ -59,10 +70,13 @@ public class TblBuyDao {
         ) {
             pstmt.setInt(1, quantity);
             pstmt.setInt(2, buyIdx);
-            pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("UPDATE 쿼리 실패 " + e.getMessage());
+            // buy_idx가 없는 값이면 오류는 아니고, update 반영한 행의 개수가 0이 됩니다.
+            System.out.println("구매수량 변경 실패 " + e.getMessage());
         }
+
+        return result;
     }
 
     // MyPage 기능 메소드
@@ -94,7 +108,7 @@ public class TblBuyDao {
                 ));
             }
         } catch (SQLException e) {
-            System.out.println("select 쿼리 실행 실패 : " + e.getMessage());
+            System.out.println("내 구매정보 조회 실패 : " + e.getMessage());
         }
 
         return list;

@@ -33,7 +33,8 @@ public class TblCustomerDao {
             pstmt.setInt(4, vo.getAge());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Join 실행 오류 " + e.getMessage());
+            // customid와 pcode는 참조 테이블의 존재하는 값으로 해야합니다. => 무결성
+            System.out.println("회원가입 실패 " + e.getMessage());
         }
     }
 
@@ -50,7 +51,7 @@ public class TblCustomerDao {
             pstmt.setString(3, vo.getCustomId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Modify 실행 오류 " + e.getMessage());
+            System.out.println("회원정보 수정 실패 " + e.getMessage());
         }
     }
 
@@ -65,7 +66,7 @@ public class TblCustomerDao {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Delete 실행 오류 " + e.getMessage());
+            System.out.println("회원 탈퇴 실행 " + e.getMessage());
         }
     }
 
@@ -91,7 +92,7 @@ public class TblCustomerDao {
                 );
             }
         } catch (SQLException e) {
-            System.out.println("select 쿼리 실행 실패 : " + e.getMessage());
+            System.out.println("회원정보 조회 실패 : " + e.getMessage());
         }
 
         return vo;
@@ -117,7 +118,7 @@ public class TblCustomerDao {
                 ));
             }
         } catch (SQLException e) {
-            System.out.println("select 쿼리 실행 실패 : " + e.getMessage());
+            System.out.println("모든 회원정보 조회 실패 : " + e.getMessage());
         }
 
         return vo;

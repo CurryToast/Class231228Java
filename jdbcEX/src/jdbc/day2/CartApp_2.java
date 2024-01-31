@@ -40,63 +40,29 @@ public class CartApp_2 {
         while (run) {       //메뉴 선택 반복
             showMenu();
             System.out.print("선택 >>> ");
-            // int select = Integer.parseInt(System.console().readLine());
             String select = System.console().readLine();
             switch (select) {
-                case "B", "b":
-                    showProductList(proDao);
-                    System.out.print("구매할 상품 코드 입력 >>> ");
-                    String pcode = System.console().readLine();
-                    System.out.print("구매할 수량 입력 >> ");
-                    int quantity = Integer.parseInt(System.console().readLine());
-
-                    BuyVo vo = new BuyVo(customerId, pcode, quantity);
-                    buyDao.add(vo);
-                    break;
-                case "D", "d":
-                    System.out.println("장바구니 목록");
-                    List<CustomerBuyVo> list = buyDao.selectCustomerBuyList(customerId);
-                    for (CustomerBuyVo b : list) {
-                        System.out.println(b);
-                    }
-                    System.out.print("\n삭제할 항목의 buy_idx 입력 >> ");
-                    int idx = Integer.parseInt(System.console().readLine());
-                    buyDao.remove(idx);
-                    break;
-                case "M", "m": // 나의 구매내역
-                    List<CustomerBuyVo> result = buyDao.selectCustomerBuyList(customerId);
-                    for (CustomerBuyVo customerBuyVo : result) {
-                        System.out.println(customerBuyVo);
-                    }
-                    break;
                 case "C", "c":
-                    System.out.println("카테고리 : A1-과일, A2-수입과일, B1-인스턴스, B2-선물세트, C1-과자류");
-                    System.out.print("카테고리 입력 >> ");
-                    String category = System.console().readLine();
-                    List<ProductVo> pv = proDao.selectByCategory(category);
-                    for (ProductVo productVo : pv) {
-                        System.out.println(productVo);
-                    }
+                    showProductListByCategory(proDao, customerId);
                     break;
                 case "P", "p":
-                    System.out.print("상품명 검색 >> ");
-                    String pname = System.console().readLine();
-                    List<ProductVo> list2 = proDao.selectByPname(pname);
-                    for (ProductVo productVo : list2) {
-                        System.out.println(productVo);
-                    }
+                    showProductListByPname(proDao);
+                    break;
+                case "M", "m": // 나의 구매내역
+                    showMyBuyList(buyDao, customerId);
+                    break;
+                case "B", "b":
+                    showProductList(proDao);
+                    buyProduct(buyDao, customerId);
+                    break;
+                case "D", "d":
+                    showMyBuyList(buyDao, customerId);
+                    cancelBuy(buyDao, customerId);
                     break;
                 case "Q", "q":
-                    System.out.println("장바구니 목록");
-                    list = buyDao.selectCustomerBuyList(customerId);
-                    for (CustomerBuyVo b : list) {
-                        System.out.println(b);
-                    }
-                    System.out.print("\n구매수량을 변경할 항목의 buy_idx 입력 >> ");
-                    int buyidx = Integer.parseInt(System.console().readLine());
-                    System.out.print("변경할 구매수량 입력 >> ");
-                    int quan = Integer.parseInt(System.console().readLine());
-                    buyDao.update(buyidx, quan);
+                    showMyBuyList(buyDao, customerId);
+                    changeMyBuyQuantity(buyDao);
+                    break;
                 case "X", "x":
                     run = false;
                     break;
@@ -110,6 +76,69 @@ public class CartApp_2 {
         List<ProductVo> list = proDao.selectAllProduct();
         for (ProductVo productVo : list) {
             System.out.println(productVo);
+        }
+    }
+
+    public static void showProductListByPname(TblProductDao proDao) {
+        System.out.print("상품명 검색 >> ");
+        String pname = System.console().readLine();
+        List<ProductVo> list = proDao.selectByPname(pname);
+        for (ProductVo productVo : list) {
+            System.out.println(productVo);
+        }
+    }
+
+    public static void showProductListByCategory(TblProductDao proDao, String customerId) {
+        System.out.println("카테고리 : A1-과일, A2-수입과일, B1-인스턴스, B2-선물세트, C1-과자류");
+        System.out.print("카테고리 입력 >> ");
+        String category = System.console().readLine();
+        List<ProductVo> pv = proDao.selectByCategory(category);
+        for (ProductVo productVo : pv) {
+            System.out.println(productVo);
+        }
+    }
+
+    public static void showMyBuyList(TblBuyDao buyDao, String customerId) {
+        System.out.println("장바구니 목록");
+        List<CustomerBuyVo> result = buyDao.selectCustomerBuyList(customerId);
+        for (CustomerBuyVo customerBuyVo : result) {
+            System.out.println(customerBuyVo);
+        }
+    }
+
+    public static void buyProduct(TblBuyDao buyDao, String customerId) {
+        System.out.print("구매할 상품 코드 입력 >>> ");
+        String pcode = System.console().readLine();
+        System.out.print("구매할 수량 입력 >> ");
+        int quantity = Integer.parseInt(System.console().readLine());
+
+        BuyVo vo = new BuyVo(customerId, pcode, quantity);
+        if (buyDao.add(vo) == 1) {
+            System.out.println("상품을 담았습니다.");
+        } else {
+            System.out.println("상품코드 또는 고객아이디 오류입니다.");
+        }
+    }
+
+    public static void cancelBuy(TblBuyDao buyDao, String customerId) {
+        System.out.print("\n삭제할 항목의 buy_idx 입력 >> ");
+        int idx = Integer.parseInt(System.console().readLine());
+        if (buyDao.remove(idx) == 1) {
+            System.out.println("정상적으로 취소되었습니다.");
+        } else {
+            System.out.println("없는 구매번호 입니다.");
+        }
+    }
+
+    public static void changeMyBuyQuantity(TblBuyDao buyDao) {
+        System.out.print("\n구매수량을 변경할 항목의 buy_idx 입력 >> ");
+        int buyidx = Integer.parseInt(System.console().readLine());
+        System.out.print("변경할 구매수량 입력 >> ");
+        int quan = Integer.parseInt(System.console().readLine());
+        if (buyDao.update(buyidx, quan) == 1) {
+            System.out.println("정상적으로 수정되었습니다.");
+        } else {
+            System.out.println("없는 구매번호 입니다.");
         }
     }
 

@@ -33,7 +33,7 @@ public class TblProductDao {
                 list.add(new ProductVo(
                     rs.getString("pcode"),
                     rs.getString("category"),
-                    rs.getString("name"), 
+                    rs.getString("pname"), 
                     rs.getInt("price")
                 ));
             }

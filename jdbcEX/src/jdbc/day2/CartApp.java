@@ -33,9 +33,11 @@ public class CartApp {
                         addItems(dao, id);
                         break;
                     case 2:
+                        selectBuyList(dao, id);
                         removeItems(dao, id);
                         break;
                     case 3:
+                        selectBuyList(dao, id);
                         updateQuantity(dao, id);
                         break;
                     case 4:
@@ -65,33 +67,33 @@ public class CartApp {
         int quantity = Integer.parseInt(System.console().readLine());
 
         BuyVo vo = new BuyVo(id, pcode, quantity);
-        dao.add(vo);
+        if (dao.add(vo) == 1) {
+            System.out.println("상품을 담았습니다.");
+        } else {
+            System.out.println("없는 상품코드 또는 고객 아이디입니다.");
+        }
     }
 
     public static void removeItems(TblBuyDao dao, String customId) {
-        System.out.println("장바구니 출력");
-        List<CustomerBuyVo> list = dao.selectCustomerBuyList(customId);
-        for (CustomerBuyVo vo : list) {
-            System.out.println(vo);
-        }
-
         System.out.print("\n삭제할 항목의 buy_idx 입력 >> ");
         int idx = Integer.parseInt(System.console().readLine());
-        dao.remove(idx);
+        if (dao.remove(idx) == 1) {
+            System.out.println("정상적으로 취소되었습니다.");
+        } else {
+            System.out.println("없는 구매번호 입니다.");
+        }
     }
 
     public static void updateQuantity(TblBuyDao dao, String customId) {
-        System.out.println("장바구니 출력");
-        List<CustomerBuyVo> list = dao.selectCustomerBuyList(customId);
-        for (CustomerBuyVo vo : list) {
-            System.out.println(vo);
-        }
-
         System.out.print("\n구매수량을 변경할 항목의 buy_idx 입력 >> ");
         int idx = Integer.parseInt(System.console().readLine());
         System.out.print("변경할 구매수량 입력 >> ");
         int quantity = Integer.parseInt(System.console().readLine());
-        dao.update(idx, quantity);
+        if (dao.update(idx, quantity) == 1) {
+            System.out.println("정상적으로 수정되었습니다.");
+        } else {
+            System.out.println("없는 구매번호 입니다.");
+        }
     }
 
     public static void searchProduct(TblProductDao dao) {
