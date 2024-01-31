@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import project.vo.ProductVo;
 
@@ -81,5 +83,15 @@ public class TblProductDao {
         }
 
         return list;
+    }
+
+    public Map<String, Integer> getPriceTable() {
+        Map<String, Integer> priceMap = new HashMap<>();
+        List<ProductVo> list = selectAllProduct();
+        for (ProductVo productVo : list) {
+            priceMap.put(productVo.getPcode(), productVo.getPrice());
+        }
+
+        return priceMap;
     }
 }

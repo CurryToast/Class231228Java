@@ -42,6 +42,47 @@ public class TblBuyDao {
         return result;
     }
 
+    // 장바구니 모두 구매
+    //  ㄴ Batch(배치)는 일괄처리 : 실행할 여러개의 insert, update, delete 등의 데이터 저장 DML을 모아 두었다가 한번에 실행
+    //  ㄴ 트랜잭션 : 특정 요구사항에 대한 하나의 기능을 실행할 여러 SQL 명령들로 구성된 작업단위
+    //          ㄴ 트랜잭션 commit 모드를 auto에서 수동으로 변경
+    //  ㄴ 예시 : cart에 저장된 상품 중 하나라도 참조값이 없는 pcode가 있으면 rollback, 모두 정상이면 commit
+    public int addMany(List<BuyVo> cart) { //  여러번의 insert 실행
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "INSERT INTO TBL_BUY (BUY_IDX , CUSTOMID, PCODE, QUANTITY, BUY_DATE) \r\n" + //
+                "VALUES (buy_pk_seq.nextval, ?, ?, ?, SYSDATE)";
+
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            conn.setAutoCommit(false); // 트랜잭션 commit 모드 auto 해제
+            for(BuyVo vo : cart) {
+                pstmt.setString(1, vo.getCustomid());
+                pstmt.setString(2, vo.getPcode());
+                pstmt.setInt(3, vo.getQuantity());
+                pstmt.addBatch(); // SQL을 메모리에 모아두기
+                count++;
+            }
+
+            pstmt.executeBatch(); // 모아둔 SQL을 일괄 실행
+            conn.commit();
+        } catch (SQLException e) { // 예외처리 : 트랜잭션 처리
+            try { conn.rollback(); } catch (SQLException e1) {}
+            count = -1;
+            System.out.println("구매 불가능한 상품이 있습니다.");
+            System.out.println("구매 실패 " + e.getMessage());
+        } finally { // 자원 해제
+            try { // 트랜잭션 처리를 위해 connection을 사용해야 하므로 직접 close했습니다.
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {}
+        }
+
+        return count;
+    }
+
     public int remove(int buyIdx) {
         int result = 0;
         String sql = "DELETE FROM TBL_BUY tb WHERE buy_idx = ?";
