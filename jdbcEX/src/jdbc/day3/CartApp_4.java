@@ -26,10 +26,18 @@ public class CartApp_4 {
 
     private void showMenu() {
         System.out.println(".".repeat(70));
-        System.out.println("[C] 카테고리별 상품 조회      [P] 상품명 검색     [M]나의 구매내역");
+        System.out.println("[C] 카테고리별 상품 조회  [P] 상품명 검색 [M]나의 구매내역 [T] 날짜별 결제금액 조회");
         System.out.println("[B] 구매하기   [D] 구매 취소  [Q] 구매 수량 변경  [X] 구매 종료");
-        System.out.println("::장바구니::[A] 담기  [L] 목록  [R] 삭제   [Y] 모두 구매 ");
+        System.out.println("::장바구니::[A] 담기  [L] 목록  [R] 삭제  [Y] 모두 구매 ");
         System.out.println(".".repeat(70));
+    }
+
+    private void showMyPay(String customerid) {
+        System.out.print("구매 날짜 입력 (yyyy-mm-dd) >> ");
+        String buyDate = System.console().readLine();
+
+        int buyMoney = buyDao.money_of_dayByCustomer(customerid, buyDate);
+        System.out.println("총 구매 금액 : " + buyMoney);
     }
 
     private void showMyPage(String customerid) {
@@ -147,6 +155,9 @@ public class CartApp_4 {
                     break;  
                 case "P","p":
                     searchProductListByPname();    
+                    break;
+                case "T","t":
+                    showMyPay(customerid);
                     break;
                 case "A","a":
                     addCartItem(customerid);

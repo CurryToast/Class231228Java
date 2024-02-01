@@ -1,10 +1,12 @@
 package project.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,5 +155,29 @@ public class TblBuyDao {
         }
 
         return list;
+    }
+
+    public int money_of_dayByCustomer(String customerid, String buyDate) {  
+        String sql = "{ call money_of_day(?,?,?) }";
+        int result = 0;
+
+        try (
+            Connection connection = getConnection();
+            CallableStatement cstmt = connection.prepareCall(sql);
+        ) {
+            // 프로시저 IN 매개변수값 전달
+            cstmt.setString(1, customerid);
+            cstmt.setString(2, buyDate);
+
+            // 프로시저 OUT 매개변수 타입 설정
+            cstmt.registerOutParameter(3, Types.NUMERIC);
+            cstmt.executeUpdate();
+
+            result = cstmt.getInt(3);
+        } catch (SQLException e) {
+            System.out.println("money of day 프로시저 실행 오류 : " + e.getMessage());
+        }
+
+        return result;
     }
 }
