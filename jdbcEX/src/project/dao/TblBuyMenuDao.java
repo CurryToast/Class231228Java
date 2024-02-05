@@ -22,9 +22,11 @@ public class TblBuyMenuDao extends TeamDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new BuyMenuVo(
+                    rs.getInt("buy_index"),
                     rs.getString("customer_id"),
                     rs.getString("menu_id"),
-                    rs.getInt("menu_quantity")
+                    rs.getInt("menu_quantity"),
+                    rs.getDate("buy_date")
                 ));
             }
         } catch (SQLException e) {

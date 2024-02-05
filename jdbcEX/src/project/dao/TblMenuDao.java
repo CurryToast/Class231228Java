@@ -14,7 +14,7 @@ import project.vo.MenuVo;
 public class TblMenuDao extends TeamDao {
     public List<MenuVo> selectMenuByName(String menuName) {
         List<MenuVo> list = new ArrayList<>();
-        String sql = "SELECT * FROM TBL_MENU WHERE MNAME LIKE '%'' || ? || '%'";
+        String sql = "SELECT * FROM TBL_MENU WHERE MNAME LIKE '%' || ? || '%'";
 
         try (
             Connection conn = this.getConnection();
@@ -35,6 +35,25 @@ public class TblMenuDao extends TeamDao {
         }
 
         return list;
+    }
+
+    public List<String> selectCategories() {
+        List<String> categories = new ArrayList<>();
+        String sql = "SELECT DISTINCT CATEGORY FROM TBL_MENU";
+
+        try (
+            Connection conn = this.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                categories.add(rs.getString("CATEGORY"));
+            }
+        } catch (SQLException e) {
+            System.out.println("카테고리 목록 조회 실패 : " + e.getMessage());
+        }
+
+        return categories;
     }
 
     public List<MenuVo> selectMenuByCategory(String category) {

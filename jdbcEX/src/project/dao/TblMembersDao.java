@@ -83,17 +83,17 @@ public class TblMembersDao extends TeamDao {
         List<String> buffer = new ArrayList<>();
 
         StringBuffer sql = new StringBuffer("UPDATE tbl_members SET ");
-        if (vo.getName() != null && vo.getName().length() > 0) {
+        if (vo.getName().length() > 0) {
             sql.append("NAME = ?,");
             buffer.add(vo.getName());
         }
 
-        if (vo.getEmail() != null && vo.getEmail().length() > 0) {
+        if (vo.getEmail().length() > 0) {
             sql.append("EMAIL = ?,");
             buffer.add(vo.getEmail());
         }
 
-        if (vo.getPhoneNumber() != null && vo.getPhoneNumber().length() > 0) {
+        if (vo.getPhoneNumber().length() > 0) {
             sql.append("PHONE_NUMBER = ? ");
             buffer.add(vo.getPhoneNumber());
         }
@@ -106,7 +106,6 @@ public class TblMembersDao extends TeamDao {
             PreparedStatement ps = conn.prepareStatement(sql.toString());
         ) {
             for (int i = 0; i < buffer.size(); i++) {
-                System.out.println("i + 1 : " + (i + 1) + "  buffer : " + buffer.get(i));
                 ps.setString(i + 1, buffer.get(i));
             }
             ps.setString(buffer.size() + 1, vo.getCode());

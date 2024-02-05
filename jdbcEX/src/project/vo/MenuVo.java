@@ -1,6 +1,10 @@
 package project.vo;
 
 public class MenuVo {
+    public static String MENU_TITLE = String.format("%8s\t%20s\t%8s\t%5s",
+        "메뉴코드", "메뉴이름", "가격", "카테고리"
+    );
+
     private String mcode;
     private String mname;
     private int mprice;
@@ -37,7 +41,9 @@ public class MenuVo {
 
     @Override
     public String toString() {
-        return "MenuVo [mcode=" + mcode + ", mname=" + mname + ", mprice=" + mprice + ", category=" + category + "]";
+        return String.format("%8s\t%20s\t%10d\t%4s",
+            mcode, mname, mprice, category
+        );
     }
 
     @Override

@@ -3,6 +3,15 @@ package project.vo;
 import java.sql.Date;
 
 public class BuyMenuVo {
+    public static String BUY_MENU_TITLE = String.format(
+        "%4s %5s %5s %4s %20s",
+        "구매번호", "고객코드", "메뉴코드", "수량", "구매날짜"
+    );
+    public static String CART_MENU_TITLE = String.format(
+        "%4s %5s %5s %4s",
+        "구매번호", "고객코드", "메뉴코드", "수량"
+    );
+
     private int buyIdx;
     private String customerId;
     private String menuId;
@@ -44,10 +53,17 @@ public class BuyMenuVo {
     }
 
 
+    public String toCartString() {
+        return String.format("%7d %9s %9s %5d",
+            buyIdx, customerId, menuId, menuQuantity
+        );
+    }
+
     @Override
     public String toString() {
-        return "BuyMenuVo [buyIdx=" + buyIdx + ", customerId=" + customerId + ", menuId=" + menuId + ", menuQuantity="
-                + menuQuantity + ", buyDate=" + buyDate + "]";
+        return String.format("%7d %9s %9s %5d %20s",
+            buyIdx, customerId, menuId, menuQuantity, buyDate
+        );
     }
 
     @Override

@@ -1,6 +1,10 @@
 package project.vo;
 
 public class MembersVo {
+    public static String MEMBERS_TITLE = String.format("%5s %s %10s %20s %10s",
+        "고객코드", "이름", "이메일", "전화번호", "나이"
+    );
+
     private String code;
     private String name;
     private String email;
@@ -45,8 +49,9 @@ public class MembersVo {
 
     @Override
     public String toString() {
-        return "MembersVo [code=" + code + ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber
-                + ", age=" + age + "]";
+        return String.format("%8s %3s %20s %20s %6d",
+            code, name, email, phoneNumber, age
+        );
     }
 
     @Override

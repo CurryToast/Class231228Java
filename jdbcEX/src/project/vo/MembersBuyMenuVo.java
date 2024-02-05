@@ -52,8 +52,9 @@ public class MembersBuyMenuVo {
 
     @Override
     public String toString() {
-        return "MembersBuyMenuVo [buyIdx=" + buyIdx + ", customerId=" + customerId + ", menuId=" + menuId
-                + ", menuPrice=" + menuPrice + ", menuQuantity=" + menuQuantity + ", buyDate=" + buyDate + "]";
+        return String.format("%d %s %s %d %d %s",
+            buyIdx, customerId, menuId, menuPrice, menuQuantity, buyDate
+        );
     }
 
     @Override
