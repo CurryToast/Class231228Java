@@ -81,6 +81,32 @@ public class TblMenuDao extends TeamDao {
         return list;
     }
 
+    public List<MenuVo> selectMenuByPrice(int priceStart, int priceEnd) {
+        List<MenuVo> list = new ArrayList<>();
+        String sql = "select * from tbl_menu where mprice between ? and ?";
+
+        try (
+            Connection conn = this.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setInt(1, priceStart);
+            ps.setInt(2, priceEnd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new MenuVo(
+                    rs.getString("mcode"),
+                    rs.getString("mname"),
+                    rs.getInt("mprice"),
+                    rs.getString("category")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("메뉴 조회 실패 : " + e.getMessage());
+        }
+
+        return list;
+    }
+
     public Map<String, Integer> getPriceTable() {
         String sql = "SELECT MCODE, MPRICE FROM TBL_MENU";
         Map<String, Integer> priceMap = new HashMap<String, Integer>();
