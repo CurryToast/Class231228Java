@@ -25,7 +25,7 @@ public class TblMembersDao extends TeamDao {
                 isSigninSuccess = true;
             }
         } catch (SQLException e) {
-            System.out.println("잘못된 회원코드 입니다 : " + e.getMessage());
+            System.out.println("로그인 실패 : " + e.getMessage());
         }
 
         return isSigninSuccess;

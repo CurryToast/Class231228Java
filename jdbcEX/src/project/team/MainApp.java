@@ -101,11 +101,17 @@ public class MainApp {
         while (run) {
             switch (signMenu) {
                 case 1:
-                    run = !login();
-                    break;
+                    if (login()) {
+                        run = false;
+                        break;
+                    } else {
+                        System.out.println("가입된 고객이 아닙니다.");
+                    }
                 case 2:
-                    join();
-                    break;
+                    if (join() == 1) {
+                        run = false;
+                        break;
+                    }
                 default:
                     break;
             }
@@ -126,6 +132,7 @@ public class MainApp {
         int newAge = Integer.parseInt(System.console().readLine());
 
         MembersVo vo = new MembersVo(newCode, newName, newEmail, newPhoneNumber, newAge);
+        customerCode = newCode;
 
         return membersDao.signup(vo);
     }
