@@ -31,7 +31,7 @@ public class MainApp {
 
     private void showMenu() {
         System.out.println(".".repeat(70));
-        System.out.println("[C] 카테고리 별 검색  [P] 상품명 검색  [V] 가격대 별 검색");
+        System.out.println("[C] 카테고리 별 검색  [P] 상품명 검색  [T] 가격대 별 검색");
         System.out.println("[B] 바로 구매  [R] 환불  [X] 프로그램 종료");
         System.out.println("::고객정보:: [I] 개인정보 조회  [N] 개인정보 변경  [M] 나의 구매내역");
         System.out.println("::장바구니:: [A] 담기  [L] 목록  [J] 수량 변경  [D] 삭제  [Y] 모두 구매 ");
@@ -54,10 +54,8 @@ public class MainApp {
                 case "P":
                     searchMenuByMname();
                     break;
-                case "V":
-                    searchMenuByPrice();
-                    break;
                 case "T":
+                    searchMenuByPrice();
                     break;
                 case "B":
                     buyMenu();
